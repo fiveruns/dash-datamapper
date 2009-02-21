@@ -1,0 +1,87 @@
+= FiveRuns Dash recipe for DataMapper
+
+Provides a Ruby API to push metrics from applications using DataMapper to the FiveRuns Dash service, http://dash.fiveruns.com, currently in beta.
+
+You'll need a Dash account before using this library.
+
+== Installation
+
+This library is released as a gem from the official repository at http://github.com/fiveruns/dash-datamapper
+
+  sudo gem install fiveruns-dash-datamapper --source http://gems.github.com
+  
+== Configuration
+
+Metrics in this recipe require a 'total_time' option be provided when the recipe is added; this option should indicate the metric to use when calculating % of utilization: 
+
+* For web applications, this is probably the total time of a request (ie, request_time)
+* For daemons, this is likely a processing cycle (eg, proc_time)
+
+Known issue: The metric name is not currently namespaced by recipe URL; although collision is unlikely, if your 'total_time' setting is for a metric that's present in more than one recipe, you may encounter problems.
+
+Note: The metric selected must be `marked', ie:
+
+  recipe.time :response_time, :method => 'Request#dispatch_action',
+                              :mark => true
+
+Example:
+
+  other_recipe.add_recipe :datamapper,
+                          :url => 'http://dash.fiveruns.com',
+                          :total_time => 'response_time'
+
+== Usage
+
+See the Dash Ruby support pages http://support.fiveruns.com/faqs/dash/ruby for more information on how to use this library. 
+
+== Authors
+
+The FiveRuns Development Team & Dash community
+
+== Dependencies
+
+* The fiveruns-dash-ruby gem (see http://github.com/fiveruns/dash-ruby)
+* The json gem (as a dependency for fiveruns-dash-ruby)
+
+== Platforms
+
+This library has only been tested on OSX and Linux.  See the notes for fiveruns-dash-ruby for more information: http://github.com/fiveruns/dash-ruby
+
+== Contributing
+
+As an open source project, we welcome community contributions!
+
+The best way to contribute is by sending pull requests via GitHub.  The official repository for this project is:
+
+  http://github.com/fiveruns/dash-datamapper
+
+== Support
+
+Please join the dash-users Google group, http://groups.google.com/group/dash-users
+
+You can also contact us via Twitter, Campfire, or email; see the main help page, http://support.fiveruns.com, for details.
+
+== License
+
+  # (The FiveRuns License)
+  #
+  # Copyright (c) 2006-2008 FiveRuns Corporation
+  # 
+  # Permission is hereby granted, free of charge, to any person obtaining
+  # a copy of this software and associated documentation files (the
+  # 'Software'), to deal in the Software without restriction, including
+  # without limitation the rights to use, copy, modify, merge, publish,
+  # distribute, sublicense, and/or sell copies of the Software, and to
+  # permit persons to whom the Software is furnished to do so, subject to
+  # the following conditions:
+  # 
+  # The above copyright notice and this permission notice shall be
+  # included in all copies or substantial portions of the Software.
+  # 
+  # THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+  # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  # IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+  # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+  # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+  # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
