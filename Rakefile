@@ -4,11 +4,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |s|
     s.name = "dash-datamapper"
-    s.summary = %Q{TODO}
-    s.email = "bruce@codefluency.com"
-    s.homepage = "http://github.com/bruce/dash-datamapper"
-    s.description = "TODO"
-    s.authors = ["Bruce Williams"]
+    s.summary = %Q{FiveRuns Dash recipe for DataMapper}
+    s.email = "dev@fiveruns.com"
+    s.homepage = "http://github.com/fiveruns/dash-datamapper"
+    s.description = "Provides an API to send metrics from applications using DataMapper to the FiveRuns Dash service" 
+    s.authors = ["FiveRuns Development Team"]
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
@@ -39,13 +39,6 @@ begin
   end
 rescue LoadError
   puts "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-end
-
-begin
-  require 'cucumber/rake/task'
-  Cucumber::Rake::Task.new(:features)
-rescue LoadError
-  puts "Cucumber is not available. In order to run features, you must: sudo gem install cucumber"
 end
 
 task :default => :test
