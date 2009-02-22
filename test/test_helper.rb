@@ -1,10 +1,15 @@
 require 'rubygems'
+require 'datamapper'
+
+$LOAD_PATH.unshift(File.dirname(__FILE__) << "/../lib")
+require 'fiveruns/dash/datamapper'
+
 require 'test/unit'
-require 'shoulda'
-require 'mocha'
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'dash_datamapper'
-
-class Test::Unit::TestCase
+begin
+  require 'redgreen'
+rescue LoadError
 end
+
+require 'activerecord'
+require 'shoulda'
